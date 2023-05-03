@@ -1,0 +1,14 @@
+.app {
+    height: 100vh;
+    display: flex;
+    background-color: #020230;
+    color: white;
+}
+.main{
+width: 75%;
+
+}
+.pyramid{
+width: 25%;
+background-color: blueviolet;
+}
