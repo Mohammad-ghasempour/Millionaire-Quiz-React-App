@@ -4,11 +4,42 @@
     background-color: #020230;
     color: white;
 }
-.main{
-width: 75%;
 
+.main {
+    width: 75%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230), url("./assets/millionaire-background.jpg") center;
+    background-size: cover;
 }
-.pyramid{
-width: 25%;
-background-color: blueviolet;
+
+.pyramid {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moneyList {
+    list-style: none;
+    width: 100%;
+    padding: 20px;
+}
+
+.moneyListItem {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+.moneyListItem.active{
+    background-color: teal;
+}
+.moneyListItemNumber{
+    width: 30%;
+    font-size: 18px;
+    font-weight: 100;
+}
+.moneyListItemAmount{
+    
+    font-size: 20px;
+    font-weight: 300;
 }
