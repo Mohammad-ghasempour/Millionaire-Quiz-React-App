@@ -9,6 +9,51 @@
     width: 75%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230), url("./assets/millionaire-background.jpg") center;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.top {
+    height: 50%;
+    position: relative;
+
+}
+
+.timer {
+
+    border: 4px solid white;
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 40px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 0;
+    left: 80px;
+
+}
+
+.bottom {
+    height: 50%;
+}
+
+.quiz {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.question {
+    width: 80%;
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid white;
+    background: linear-gradient(#100241, black);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .pyramid {
@@ -30,16 +75,19 @@
     padding: 5px;
     border-radius: 5px;
 }
-.moneyListItem.active{
+
+.moneyListItem.active {
     background-color: teal;
 }
-.moneyListItemNumber{
+
+.moneyListItemNumber {
     width: 30%;
     font-size: 18px;
     font-weight: 100;
 }
-.moneyListItemAmount{
-    
+
+.moneyListItemAmount {
+
     font-size: 20px;
     font-weight: 300;
 }

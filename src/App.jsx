@@ -1,6 +1,10 @@
 import "./app.css";
+import react , { useState } from "react";
+import Quiz from "./components/Quiz";
 
 function App() {
+const [questionNumber, setQuestionNumber] = useState(1); 
+
    const moneyPyramit = [
       { id: 1, amount: "$ 100" },
       { id: 2, amount: "$ 200" },
@@ -20,11 +24,16 @@ function App() {
    ].reverse();
    return (
       <div className="app">
-         <div className="main">Main</div>
+         <div className="main">
+            <div className="top">
+               <div className="timer">30</div>
+            </div>
+            <div className="bottom"><Quiz/></div>
+         </div>
          <div className="pyramid">
-            <ul className="moneyList">
+            <ul className= "moneyList">
                {moneyPyramit.map((item) => (
-                  <li className="moneyListItem">
+                  <li className= {questionNumber != item.id ? "moneyListItem" : "moneyListItem active"}>
                      <span className="moneyListItemNumber">{item.id}</span>
                      <span className="moneyListItemAmount">{item.amount}</span>
                   </li>
