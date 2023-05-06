@@ -1,16 +1,34 @@
+import { useState, useEffect } from "react";
+const Quiz = ({ data, setTimeOut, setQuestionNumber, questionNumber }) => {
+   const [question, setQuestion] = useState(null);
+   const [selectedAnswer, setSelectedAnswer] = useState(null);
+   const [className, setClassName] = useState("answer");
 
-const Quiz = () => {
-  return (
-    <div className="quiz">
-        <div className="question">What is the best Designer website?</div>
-        <div className="answers">
-            <div className="answer">Oxin Web</div>
-            <div className="answer">Oxin Web</div>
-            <div className="answer">Oxin Web</div>
-            <div className="answer">Oxin Web</div>
-        </div>
-    </div>
-  )
-}
+   useEffect(() => {
+      setQuestion(data[questionNumber - 1]);
+      console.log(question);
+   }, [questionNumber, data]);
 
-export default Quiz
+   const handleClick = (answer) => {
+      setSelectedAnswer(answer);
+      setClassName("answer active");
+   };
+
+   return (
+      <div className="quiz">
+         <div className="question">{question?.question}</div>
+         <div className="answers">
+            {question?.answers.map((answer) => (
+               <div
+                  className={selectedAnswer === answer ? className : "answer"}
+                  onClick={() => handleClick(answer)}
+               >
+                  {answer.text}
+               </div>
+            ))}
+         </div>
+      </div>
+   );
+};
+
+export default Quiz;

@@ -1,10 +1,44 @@
 import "./app.css";
-import react , { useState } from "react";
+import react, { useState } from "react";
 import Quiz from "./components/Quiz";
 
 function App() {
-const [questionNumber, setQuestionNumber] = useState(1); 
+   const [questionNumber, setQuestionNumber] = useState(1);
+   const [timeOut, setTimeOut] = useState(false);
 
+   const data = [
+      {
+         id: 1,
+         question: "Which Web development solution is the best?",
+         answers: [
+            { text: "Nodesample.js", correct: false },
+            { text: "Nothing.js", correct: false },
+            { text: "React.js", correct: true },
+            { text: "extra.js", correct: false },
+         ],
+      },
+      {
+         id: 2,
+         question: "Who is the best Design developer?",
+         answers: [
+            { text: "Jone", correct: false },
+            { text: "Mohammad!", correct: true },
+            { text: "Torbjørn", correct: false },
+            { text: "Markus", correct: false },
+         ],
+      },
+      {
+         id: 3,
+         question:
+            "Rolex is a company that specialize in what type of products ?",
+         answers: [
+            { text: "Phone", correct: false },
+            { text: "Watches", correct: true },
+            { text: "Computers", correct: false },
+            { text: "Biscuite", correct: false },
+         ],
+      },
+   ];
    const moneyPyramit = [
       { id: 1, amount: "$ 100" },
       { id: 2, amount: "$ 200" },
@@ -28,12 +62,20 @@ const [questionNumber, setQuestionNumber] = useState(1);
             <div className="top">
                <div className="timer">30</div>
             </div>
-            <div className="bottom"><Quiz/></div>
+            <div className="bottom">
+               <Quiz data={data} setTimeOut={setTimeOut} setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} />
+            </div>
          </div>
          <div className="pyramid">
-            <ul className= "moneyList">
+            <ul className="moneyList">
                {moneyPyramit.map((item) => (
-                  <li className= {questionNumber != item.id ? "moneyListItem" : "moneyListItem active"}>
+                  <li
+                     className={
+                        questionNumber !== item.id
+                           ? "moneyListItem"
+                           : "moneyListItem active"
+                     }
+                  >
                      <span className="moneyListItemNumber">{item.id}</span>
                      <span className="moneyListItemAmount">{item.amount}</span>
                   </li>
