@@ -6,12 +6,14 @@ const Quiz = ({ data, setTimeOut, setQuestionNumber, questionNumber }) => {
 
    useEffect(() => {
       setQuestion(data[questionNumber - 1]);
-      console.log(question);
    }, [questionNumber, data]);
 
    const handleClick = (answer) => {
       setSelectedAnswer(answer);
       setClassName("answer active");
+      setTimeout(() => {
+         setClassName(answer.correct ? "answer correct" : "answer wrong");
+      }, 3000);
    };
 
    return (
