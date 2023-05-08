@@ -4,7 +4,7 @@ import Quiz from "./components/Quiz";
 
 function App() {
    const [questionNumber, setQuestionNumber] = useState(1);
-   const [timeOut, setTimeOut] = useState(false);
+   const [stop, setStop] = useState(false);
 
    const data = [
       {
@@ -59,12 +59,29 @@ function App() {
    return (
       <div className="app">
          <div className="main">
-            <div className="top">
-               <div className="timer">30</div>
-            </div>
-            <div className="bottom">
-               <Quiz data={data} setTimeOut={setTimeOut} setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} />
-            </div>
+            {stop ? (
+               <div className="stop">{`You Earned ${
+                  questionNumber == 1
+                     ? "$ 0"
+                     : moneyPyramit.find(
+                          (item) => item.id === questionNumber - 1
+                       ).amount
+               }`}</div>
+            ) : (
+               <>
+                  <div className="top">
+                     <div className="timer">30</div>
+                  </div>
+                  <div className="bottom">
+                     <Quiz
+                        data={data}
+                        setStop={setStop}
+                        setQuestionNumber={setQuestionNumber}
+                        questionNumber={questionNumber}
+                     />
+                  </div>
+               </>
+            )}
          </div>
          <div className="pyramid">
             <ul className="moneyList">

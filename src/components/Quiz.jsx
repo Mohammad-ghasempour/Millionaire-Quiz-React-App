@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-const Quiz = ({ data, setTimeOut, setQuestionNumber, questionNumber }) => {
+const Quiz = ({ data, setStop, setQuestionNumber, questionNumber }) => {
    const [question, setQuestion] = useState(null);
    const [selectedAnswer, setSelectedAnswer] = useState(null);
    const [className, setClassName] = useState("answer");
@@ -8,12 +8,26 @@ const Quiz = ({ data, setTimeOut, setQuestionNumber, questionNumber }) => {
       setQuestion(data[questionNumber - 1]);
    }, [questionNumber, data]);
 
+   const delay = (duration, callback) => {
+      setTimeout(() => {
+         callback();
+      }, duration);
+   };
+
    const handleClick = (answer) => {
       setSelectedAnswer(answer);
       setClassName("answer active");
-      setTimeout(() => {
+      delay(3000, () => {
          setClassName(answer.correct ? "answer correct" : "answer wrong");
-      }, 3000);
+      });
+      delay(7000 , ()=>{
+         if (answer.correct){
+
+            setQuestionNumber(prev=> prev+1);
+         } else{
+            setStop(true);
+         }
+      })
    };
 
    return (
