@@ -1,11 +1,12 @@
 import "./app.css";
-import react, { useState } from "react";
+import { useState } from "react";
 import Quiz from "./components/Quiz";
 import Timer from "./components/Timer";
 
 function App() {
    const [questionNumber, setQuestionNumber] = useState(1);
    const [stop, setStop] = useState(false);
+   const [pause , setPause] = useState(false);
 
    const data = [
       {
@@ -71,7 +72,7 @@ function App() {
             ) : (
                <>
                   <div className="top">
-                     <div className="timer"><Timer setStop={setStop} questionNumber={questionNumber}/></div>
+                     <div className="timer"><Timer setStop={setStop} pause={pause} questionNumber={questionNumber}/></div>
                   </div>
                   <div className="bottom">
                      <Quiz
@@ -79,6 +80,7 @@ function App() {
                         setStop={setStop}
                         setQuestionNumber={setQuestionNumber}
                         questionNumber={questionNumber}
+                        setPause={setPause}
                      />
                   </div>
                </>
@@ -87,7 +89,7 @@ function App() {
          <div className="pyramid">
             <ul className="moneyList">
                {moneyPyramit.map((item) => (
-                  <li
+                  <li key={item.id}
                      className={
                         questionNumber !== item.id
                            ? "moneyListItem"

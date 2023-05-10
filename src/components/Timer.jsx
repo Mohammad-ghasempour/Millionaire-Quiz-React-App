@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react";
 
-const Timer = ({ questionNumber, setStop }) => {
-   const [timer, setTimer] = useState(20);
+const Timer = ({ questionNumber, setStop , pause }) => {
+   const [timer, setTimer] = useState(60);
    
    useEffect(() => {
     
       if (timer === 0) return setStop(true);
-      if (timer !== 14) {
+     // if (!pause) {
 
           const interval = setInterval(() => {
               setTimer((prev) => prev - 1);
             }, 1000);
             return () => clearInterval(interval);
-        }
-   }, [timer, setStop]);
+      //  }
+   }, [timer, setStop , pause]);
 
    useEffect(() => {
-      setTimer(20);
+      setTimer(60);
    }, [questionNumber]);
+   
 
    return timer;
 };
