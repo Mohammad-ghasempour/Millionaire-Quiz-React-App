@@ -2,11 +2,13 @@ import "./app.css";
 import { useState } from "react";
 import Quiz from "./components/Quiz";
 import Timer from "./components/Timer";
+import Start from "./components/Start";
 
 function App() {
    const [questionNumber, setQuestionNumber] = useState(1);
    const [stop, setStop] = useState(false);
-   const [pause , setPause] = useState(false);
+   const [pause, setPause] = useState(false);
+   const [username, setUsername] = useState(null);
 
    const data = [
       {
@@ -60,7 +62,8 @@ function App() {
    ].reverse();
    return (
       <div className="app">
-         <div className="main">
+         {username ? <>
+            <div className="main">
             {stop ? (
                <div className="stop">{`You Earned ${
                   questionNumber == 1
@@ -72,7 +75,13 @@ function App() {
             ) : (
                <>
                   <div className="top">
-                     <div className="timer"><Timer setStop={setStop} pause={pause} questionNumber={questionNumber}/></div>
+                     <div className="timer">
+                        <Timer
+                           setStop={setStop}
+                           pause={pause}
+                           questionNumber={questionNumber}
+                        />
+                     </div>
                   </div>
                   <div className="bottom">
                      <Quiz
@@ -89,7 +98,8 @@ function App() {
          <div className="pyramid">
             <ul className="moneyList">
                {moneyPyramit.map((item) => (
-                  <li key={item.id}
+                  <li
+                     key={item.id}
                      className={
                         questionNumber !== item.id
                            ? "moneyListItem"
@@ -102,6 +112,8 @@ function App() {
                ))}
             </ul>
          </div>
+         </> : <Start setUsername={setUsername} />}
+        
       </div>
    );
 }
